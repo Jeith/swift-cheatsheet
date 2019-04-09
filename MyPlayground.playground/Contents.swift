@@ -1,3 +1,4 @@
+import UIKit
 
 // ------------------------------------------------------
 // --------------------- LOOPS --------------------------
@@ -23,16 +24,26 @@ stride(from: 1, to: 2, by: 0.1) // 1.0, 1.1 ... 1.9
 // --------------------- ARRAYS -------------------------
 // ------------------------------------------------------
 
+// declaring array of strings
 var arrayOfStrings: [String] = ["I", "❤", "Swift"]
+// accessing values from an arrays
 print(arrayOfStrings[0]); // We
+// basically .length
 print(arrayOfStrings.count); // 3
-
+// declaring array of integers
 var numbers: [Int] = [1, 2, 3]
 // appending values
 numbers += [4, 5, 6] // numbers will be [1, 2, 3, 4, 5, 6]
 // or just one value
 numbers += [7] // numbers will be [1, 2, 3, 4, 5, 6, 7]
-numbers.remove(at: 0) // [2, 3, 4, 5, 6, 7]
+numbers.append(14) // numbers will be [1, 2, 3, 4, 5, 6, 7, 14]
+// removing values
+numbers.remove(at: 0) // [2, 3, 4, 5, 6, 7, 14]
+// changing values
+numbers[6] = 92 // [2, 3, 4, 5, 6, 92]
+//inserting values
+numbers.insert(42, at: 1) // [2, 42, 3, 4, 5, 6, 7]
+
 
 
 var moreNumbers: [Int] = [1, 2, 3]
@@ -43,10 +54,8 @@ moreNumbers[2] = 4 // numbers will be [7, 5, 4]
 
 
 
-
-
 // ------------------------------------------------------
-// --------------- Basic Algorithm ----------------------
+// --------------- Basic Algorithms ---------------------
 // ------------------------------------------------------
 
 
@@ -90,7 +99,7 @@ while firstIndex < lastIndex {
     var tmp = listOfNumbers[firstIndex]
     listOfNumbers[firstIndex] = listOfNumbers[lastIndex]
     listOfNumbers[lastIndex] = tmp
-
+    
     // go to next pair
     firstIndex += 1
     lastIndex -= 1
