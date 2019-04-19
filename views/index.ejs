@@ -1,0 +1,52 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>The World Factbook</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheets/style.css" type="text/css">
+
+  </head>
+  <body>
+        <header>
+            <h1>World FactBook</h1>
+        </header>
+        <div class="enterCountry">
+            <h3>Search any country or territory you'd like to learn about:</h3>
+        </div>
+        <div class="search row">
+            <div class="col-md-4 col-1"></div>
+            <div class="col-md-4 col-10">
+                <input type='text' id='searchbar' placeholder='Enter any Country...'>
+            </div>
+            <div class="col-md-4 col-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-1"></div>
+            <div class="col-md-2 col-5">
+                <button type='submit' id='searchbutton' onclick="loadSearchResults()">GO!</button>
+            </div>
+            <div class="col-md-2 col-5">
+                <button type='submit' id='randombutton'>Random</button>
+            </div>
+            <div class="col-md-5"></div>
+        </div>
+        
+        <div class="earth">
+        </div>
+
+        <script
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="../javascripts/index.js"></script>
+      </body>
+</html>
