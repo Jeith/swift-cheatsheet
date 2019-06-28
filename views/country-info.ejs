@@ -1,9 +1,9 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Country Background</title>
+    <title><%= countryName %> | The World Stat Book</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
     <!-- Required meta tags -->
@@ -11,36 +11,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheets/style.css" type="text/css">
 </head>
 <!-- Loads page content from search bar -->
-<body onload="loadPage()">
-    <header>
-        <!-- clicking the title takes you home and clears seach storage -->
-        <h1><a id="title" href="index.html" onclick="clearit()">World FactBook</a></h1> 
-        <!-- searchbar -->
-        <div class="search"> 
-            <input type="text" placeholder="Search..." id="searchbar">
-            <button type="submit" id='searchbutton'><i class="fas fa-search"></i></button>
+<body onload="loadPage()" id="country-details">
+    <span id="cc" style="display: none;"><%= cc %></span>
+    
+    <div class="mobile-navbar">
+        <div class="nav-item" id="background" onclick="changePage(this)">
+            <!-- FUTURE: make this icon change based on contenient -->
+            <i class="fas fa-globe-americas"></i>
+            <span>Background</span>
         </div>
-    </header>
-    <!-- nav butttons to reveal different information within the same country -->
-    <div class = "sidebar"> 
-        <button class = "sideButton" id = "geography" style = "font-size: 20px;">Geography</button>
-        <button class = "sideButton" id = "peopleAndSociety" style = "font-size: 20px;">People and Society</button>
-        <button class = "sideButton" id = "government" style = "font-size: 20px;">Government</button>
-        <button class = "sideButton" id = "economy" style = "font-size: 20px;">Economy</button>
+        <div class="nav-item" id="geography" onclick="changePage(this)">
+            <i class="fas fa-atlas"></i>
+            <span>Geography</span>
+        </div>
+        <div class="nav-item" id="economy" onclick="changePage(this)">
+            <i class="fas fa-coins"></i>
+            <span>Economy</span>
+        </div>
+        <div class="nav-item" id="government" onclick="changePage(this)">
+            <i class="fas fa-balance-scale"></i>
+            <span>Government</span>
+        </div>
+        <div class="nav-item" id="peopleAndSociety" onclick="changePage(this)">
+            <i class="fas fa-users"></i>
+            <span>People & Society</span>
+        </div>
     </div>
-    <!-- box containing all information, sections are hidden or revealed deppending on what sidebar button is pressed -->
-    <div id="hidebox">
-        <!-- title portion that stays between buttons -->
-        <div id = "contentBG" class ="content">
+        <div id = "backgroundContent" class="content hidden">
             <h2 class="countryName"></h2>
             <p id="countryDesc"></p>
         </div>
         <!-- Geography section: has basic info and google api insert -->
-        <div id="contentGE" class ="content">
+        <div id="geographyContent" class="content hidden">
                 <div class ="head">
                 <h2 class="countryName"></h2>
                     <p class = "label">-  Geography</p>
@@ -87,7 +92,7 @@
             </div>
 
             <!-- People and Society section: has chart.js api content -->
-            <div id="contentPS" class ="content">
+            <div id="peopleAndSocietyContent" class="content hidden">
                 <div class ="head">
                                 <h2 class="countryName"></h2>
                     <p class = "label">-  People and Society</p>
@@ -98,7 +103,7 @@
                 </div>
                 <div class = "rows">
                     <div class= "half">
-                            <canvas id="chart1" width="400px" height="400px"></canvas>
+                        <canvas id="chart1" width="400px" height="400px"></canvas>
                     </div>
                     <div class = "midline"></div>
                     <div class = "half">
@@ -126,7 +131,7 @@
             </div>
     
             <!-- Government section: has basic info flag insert from image files -->
-            <div id="contentGO" class ="content">
+            <div id="governmentContent" class="content hidden">
                 <div class ="head">
                     <h2 class="countryName"></h2>
                     <p class = "label">-  Government</p>
@@ -166,7 +171,7 @@
             </div>
     
             <!-- Economy section: has basic info and chart.js api insert -->
-            <div id="contentEC" class ="content">
+            <div id="economyContent" class ="content">
                 <div class ="head">
                                 <h2 class="countryName"></h2>
                     <p class = "label">-  Economy</p>
@@ -234,9 +239,17 @@
                     </div>
                 </div>
             </div>
-        </div>    
 
+    <script>    
+        const navBarIdArr = ["background", "geography", "peopleAndSociety", "government", "economy"];
 
+        function changePage(e){
+            for (let i = 0; i < 5; i++){
+                e.id === navBarIdArr[i] ? $('#' + navBarIdArr[i] + "Content").removeClass("hidden") : $('#' + navBarIdArr[i] + "Content").addClass("hidden");
+            }
+        }
+
+    </script>
     <script
     src="https://code.jquery.com/jquery-3.3.1.js"
     integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -244,9 +257,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8Qz_yg_xOGzY73WTonlSf3yKwuD2XLNk&callback=initMap"
     async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-    <script src='javascripts/index.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
     <script src="../javascripts/index.js"></script>
 </body>
 </html>
